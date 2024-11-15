@@ -1,0 +1,143 @@
+﻿﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angry Birds Kick Piggies Game To Play Online</title>
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <script src="https://apis.google.com/js/platform.js"></script>
+    <style>
+        /* Estilos para centrar el juego y aumentar su tamaño */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .game-container {
+            position: relative;
+            width: 800px;
+            height: 400px;
+            background-color: #000;
+            overflow: hidden;
+        }
+        /* Estilo del widget de YouTube */
+        .yt-subscribe-container {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 5px 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        /* Estilo del formulario de donación */
+        .donation-form {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 8px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        .donation-form input[type="image"] {
+            display: block;
+            margin: 0 auto;
+            width: 150px;
+            height: auto;
+        }
+        /* Botones de pantalla */
+        .fullscreen-btns {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 660px;
+        }
+        .fullscreen-btns button {
+            padding: 10px;
+            width: 60px; /* Botones más pequeños */
+            height: 60px; /* Hacerlos cuadrados */
+            background-color: rgba(135, 206, 235, 0.6); /* Azul cielo transparente */
+            color: white;
+            border: none;
+            border-radius: 10px; /* Bordes redondeados */
+            cursor: pointer;
+            font-size: 14px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .fullscreen-btns button:hover {
+            background-color: #092542;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container" id="gameContainer">
+        <!-- Widget de suscripción de YouTube -->
+        <div class="yt-subscribe-container">
+            <div class="g-ytsubscribe" data-channel="venuskawaiigames" data-layout="full" data-count="default" data-onytevent="onYtEvent"></div>
+        </div>
+
+        <!-- Juego incrustado -->
+        <embed src="angry_birds_kick_piggies_by_venuskawaiigames-d9rfd4d.swf" id="gameEmbed" width="100%" height="100%">
+
+        <!-- Botones de pantalla -->
+        <div class="fullscreen-btns">
+            <button id="enterFullscreen">Full Screen</button>
+            <button id="exitFullscreen">Restore Size</button>
+        </div>
+
+        <!-- Formulario de donación -->
+        <form class="donation-form" action="https://www.paypal.com/donate" method="post" target="_top">
+            <input type="hidden" name="hosted_button_id" value="5C4S9WYFJCRV2">
+            <input type="image" src="https://www.paypalobjects.com/en_US/MX/i/btn/btn_donateCC_LG.gif" 
+                name="submit" 
+                title="PayPal - The safer, easier way to pay online!" 
+                alt="Donate with PayPal button" 
+                border="0">
+            <img src="https://www.paypal.com/en_MX/i/scr/pixel.gif" width="1" height="1" border="0">
+        </form>
+    </div>
+
+    <script>
+        function onYtEvent(payload) {
+            if (payload.eventType == 'subscribe') {
+                // Código para manejar evento de suscripción.
+                alert("¡Gracias por suscribirte!");
+            } else if (payload.eventType == 'unsubscribe') {
+                // Código para manejar evento de desuscripción.
+                alert("Lamentamos que te vayas :(");
+            }
+            if (window.console) { // Para depuración.
+                console.log('YT event: ', payload);
+            }
+        }
+
+        const gameContainer = document.getElementById('gameContainer');
+        const gameEmbed = document.getElementById('gameEmbed');
+        const enterFullscreen = document.getElementById('enterFullscreen');
+        const exitFullscreen = document.getElementById('exitFullscreen');
+
+        enterFullscreen.addEventListener('click', () => {
+            gameContainer.style.width = '100vw';
+            gameContainer.style.height = '100vh';
+            gameEmbed.style.width = '100%';
+            gameEmbed.style.height = '100%';
+        });
+
+        exitFullscreen.addEventListener('click', () => {
+            gameContainer.style.width = '800px';
+            gameContainer.style.height = '400px';
+            gameEmbed.style.width = '100%';
+            gameEmbed.style.height = '100%';
+        });
+    </script>
+</body>
+</html>
